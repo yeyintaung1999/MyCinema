@@ -12,8 +12,8 @@ export default function App() {
     <NavigationContainer>
       <stack.Navigator>
         <stack.Screen name="Launch" component={LaunchScreen} options={{headerShown: false}}></stack.Screen>
-        <stack.Screen name="Home" component={MainScreen} options={{headerBackVisible: false, headerLargeTitle: true}}></stack.Screen>
-        <stack.Screen name="Login" component={LoginScreen}></stack.Screen>
+        <stack.Screen name="Home" component={MainScreen} options={{headerBackVisible: false, headerLargeTitle: true, headerTintColor: '#7758B7'}}></stack.Screen>
+        <stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}></stack.Screen>
         <stack.Screen name="Detail" component={DetailScreen}></stack.Screen>
       </stack.Navigator>
     </NavigationContainer>

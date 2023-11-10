@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from "react";
-import {View,Text, StyleSheet, FlatList, Image, ScrollView} from 'react-native';
+import {View,Text, StyleSheet, FlatList, Image, ScrollView, ActivityIndicator} from 'react-native';
 
 import Poster from "../components/poster";
 import useResults from "../hook/useResults";
@@ -9,7 +9,11 @@ const MainScreen = (props) => {
     const [popular, latest] = useResults()
 
     if (!popular.length) {
-        return null
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color='#7758B7'></ActivityIndicator>
+            </View>
+        )
     }
 
     if (!latest.length) {
@@ -20,7 +24,7 @@ const MainScreen = (props) => {
         <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
         <View style={{marginTop: 150}}>
             <View style={styles.titleContainer}>
-            <Text style={styles.title}>NOW ON THEATRE</Text>
+            <View style={styles.titleobj}><Text style={styles.title}>NOW ON THEATRE</Text></View>
             {/* <View style={{width: 200, height: 20, backgroundColor: 'red'}}></View> */}
             </View>
             <FlatList
@@ -33,7 +37,7 @@ const MainScreen = (props) => {
                     return <Poster movie={item} nav={props.navigation}/>
                 }}
             />
-            <Text style={styles.title}>TOP RATED FILMS</Text>
+            <View style={styles.titleobj}><Text style={styles.title}>TOP RATED FILMS</Text></View>
             <FlatList
                 style={{shadowColor: '#7758B7', shadowOpacity: 1}}
                 horizontal
@@ -55,15 +59,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginHorizontal: 20,
         marginTop: 10,
+        color: 'white',
+    },
+    titleobj: {
         shadowColor: '#7758B7',
         shadowOpacity: 1.0,
-        shadowOffset: 1.0,
-        color: 'white'
+        shadowOffset: 1.0
     },
     titleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         // justifyContent: 'center'
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })
 
